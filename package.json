@@ -1,0 +1,27 @@
+{
+  "name": "auth.tribble",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/edwin-rodriguez/auth.tribble.git"
+  },
+  "author": "edwin-rodriguez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/edwin-rodriguez/auth.tribble/issues"
+  },
+  "homepage": "https://github.com/edwin-rodriguez/auth.tribble#readme",
+  "dependencies": {
+    "body-parser": "^1.13.1",
+    "express": "^4.12.4",
+    "gulp": "^3.9.0",
+    "gulp-nodemon": "^2.0.3",
+    "jsonwebtoken": "^5.0.2",
+    "stormpath": "^0.10.0"
+  }
+}
