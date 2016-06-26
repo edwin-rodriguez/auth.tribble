@@ -3,7 +3,7 @@ var stormpathClient = require('../vendor/vendor.stormpathClient'),
 
 var ctrl = {
 	post: function(req,res){
-		var login = req.body.login, 
+		var login = req.body.login,
 			password = req.body.password;
 
 		// authenticate user in stormpath
@@ -12,8 +12,10 @@ var ctrl = {
 				username: login,
 				password: password,
 			}, function (err, result) {
-				if (err) 
+				if (err) {
 					res.status(401).send(err.userMessage);
+					return;
+				}
 
 				var account = result.account;
 
@@ -36,7 +38,7 @@ var ctrl = {
 			}
 
 			// verifies secret and checks exp
-			jwt.verify(token, stormpathClient.settings.API_KEY_SECRET, function(err, decoded) {      
+			jwt.verify(token, stormpathClient.settings.API_KEY_SECRET, function(err, decoded) {
 				if (err) {
 					res.status(401).send('Failed to authenticate token.');
 				} else {
@@ -47,7 +49,7 @@ var ctrl = {
 		} else {
 			res.status(403).send('No token provided.')
 		}
-	}	
+	}
 };
 
 module.exports = ctrl;
