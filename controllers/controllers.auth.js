@@ -21,8 +21,7 @@ var ctrl = {
 
 				// genrate token
 				var token = jwt.sign(account, stormpathClient.settings.API_KEY_SECRET, {
-					expiresInMinutes: 1440 // expires in 24 hours
-					//expiresInSeconds: 20
+					expiresIn: 7200 //seconds = 2 hours
 				});
 
 				res.send(token);

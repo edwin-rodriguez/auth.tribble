@@ -22,9 +22,7 @@ var ctrl = {
       //username: 'tk421',
       email: req.body.email,//required
       password: req.body.password,//required
-      /*customData: {
-        favoriteColor: 'white',
-      }*/
+      customData: req.body.customData
     };
 
     //create account in stormpath
