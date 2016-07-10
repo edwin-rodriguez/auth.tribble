@@ -17,8 +17,8 @@ app.use(function(req, res, next) {
 });
 
 //custom routes
-var authRoutes = require('./routes/routes.auth')();
-app.use('/authenticate', authRoutes);
+var authRoutes = require('./routes/routes')();
+app.use('/', authRoutes);
 
 //root route
 app.get('/', function(req, res){
