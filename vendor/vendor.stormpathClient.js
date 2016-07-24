@@ -28,6 +28,7 @@ client.getApplication(settings.APP_URL, function(err, app) {
 
 module.exports = {
 	settings: settings,
+	client: client,
 	getApp: function (cb) {
 		if (typeof stormpathApp != 'undefined'){
 			cb(stormpathApp);

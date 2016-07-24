@@ -1,6 +1,17 @@
 var stormpathClient = require('../vendor/vendor.stormpathClient'),
 	jwt = require('jsonwebtoken');
 
+function extend(target) {
+    var sources = [].slice.call(arguments, 1);
+    sources.forEach(function (source) {
+        for (var prop in source) {
+            target[prop] = source[prop];
+        }
+    });
+    return target;
+};
+
+
 var ctrl = {
 	post: function(req,res){
 		var login = req.body.login,
@@ -17,14 +28,21 @@ var ctrl = {
 					return;
 				}
 
-				var account = result.account;
+				//load full Account object
+				stormpathClient.client.getAccount(result.account.href, function(err, account) {
+					//load custom data
+					account.getCustomData(function(err, customData) {
+						//extend customdata property of current account object
+				    extend(account.customData, customData);
 
-				// genrate token
-				var token = jwt.sign(account, stormpathClient.settings.API_KEY_SECRET, {
-					expiresIn: 7200 //seconds = 2 hours
+						// genrate token
+						var token = jwt.sign(account, stormpathClient.settings.API_KEY_SECRET, {
+							expiresIn: 7200 //seconds = 2 hours
+						});
+
+						res.send(token);
+				  });
 				});
-
-				res.send(token);
 			});
 		});
 	},
